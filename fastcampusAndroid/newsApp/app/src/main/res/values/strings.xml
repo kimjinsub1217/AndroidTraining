@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">newsApp</string>
+    <string name="feedChip">피드</string>
+    <string name="politicsChip">정치</string>
+    <string name="economyChip">경제</string>
+    <string name="societyChip">사회</string>
+    <string name="cultureChip">문화/연예</string>
+    <string name="sportChip">스포츠</string>
+</resources>
