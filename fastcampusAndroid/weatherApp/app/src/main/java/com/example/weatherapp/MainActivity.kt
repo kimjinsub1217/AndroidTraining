@@ -11,12 +11,16 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import com.example.weatherapp.databinding.ActivityMainBinding
 import com.google.android.gms.location.LocationServices
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
-    val locationPermissionRequest = registerForActivityResult(
+
+    private lateinit var binding: ActivityMainBinding
+
+    private val locationPermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
         when {
@@ -36,7 +40,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         locationPermissionRequest.launch(arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION))
 
@@ -120,7 +125,22 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     }
-                    Log.e("Forecast2", forecastDateTimeMap.toString())
+                    val list = forecastDateTimeMap.values.toMutableList()
+                    list.sortWith { f1, f2 ->
+                        val f1DateTime = "${f1.forecastDate}${f1.forecastDate}"
+                        val f2DateTime = "${f2.forecastDate}${f2.forecastDate}"
+
+                        return@sortWith f1DateTime.compareTo(f2DateTime)
+                    }
+
+                    val currentForecast = list.first()
+                    binding.temperatureTextView.text =
+                        getString(R.string.temperature_text, currentForecast.temperature)
+                    binding.skyTextView.text = currentForecast.weather
+                    binding.precipitationTextView.text =
+                        getString(R.string.precipitation_text, currentForecast.precipitation)
+
+
                 }
 
                 override fun onFailure(call: Call<WeatherEntity>, t: Throwable) {
