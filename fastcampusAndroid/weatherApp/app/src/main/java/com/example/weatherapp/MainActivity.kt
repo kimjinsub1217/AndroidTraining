@@ -3,23 +3,29 @@ package com.example.weatherapp
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import com.example.weatherapp.databinding.ActivityMainBinding
+import com.example.weatherapp.databinding.ItemForecastBinding
 import com.google.android.gms.location.LocationServices
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private val locationPermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
@@ -38,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -68,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun updateLocation() {
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -80,6 +88,25 @@ class MainActivity : AppCompatActivity() {
             return
         }
         fusedLocationClient.lastLocation.addOnSuccessListener {
+            Thread {
+                try {
+                    val addressList = Geocoder(this, Locale.KOREA).getFromLocation(
+                        it.latitude,
+                        it.longitude,
+                        1
+                    )
+                    runOnUiThread {
+                        binding.locationTextView.text = addressList?.get(0)?.thoroughfare.orEmpty()
+
+
+                    }
+                } catch (e: Exception) {
+
+                    e.printStackTrace()
+                }
+            }.start()
+
+
             val retrofit = Retrofit.Builder()
                 .baseUrl("http://apis.data.go.kr/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -139,6 +166,25 @@ class MainActivity : AppCompatActivity() {
                     binding.skyTextView.text = currentForecast.weather
                     binding.precipitationTextView.text =
                         getString(R.string.precipitation_text, currentForecast.precipitation)
+
+                    binding.childForecastLayout.apply {
+
+                        list.forEachIndexed { index, forecast ->
+                            if (index == 0) {
+                                return@forEachIndexed
+                            }
+
+                            val itemView = ItemForecastBinding.inflate(layoutInflater)
+                            itemView.timeTextView.text = forecast.forecastTime
+                            itemView.weatherTextView.text = forecast.weather
+                            itemView.temperatureTextView.text =
+                                getString(R.string.temperature_text, forecast.temperature)
+
+                            addView(itemView.root)
+
+                        }
+
+                    }
 
 
                 }
