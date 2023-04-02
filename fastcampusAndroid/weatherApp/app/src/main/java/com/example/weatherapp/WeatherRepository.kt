@@ -25,7 +25,7 @@ object WeatherRepository {
         val converter = GeoPointConverter()
         val point = converter.convert(lat = latitude, lon = longitude)
         service.getVillageForecast(
-            serviceKey = ServiceKey.APIKEY,
+            serviceKey = ApiServiceKey.APIKEY,
             baseDate = baseDateTime.baseDate,
             baseTime = baseDateTime.baseTime,
             nx = point.nx,
