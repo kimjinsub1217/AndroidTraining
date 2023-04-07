@@ -3,9 +3,13 @@ package com.example.restaurantmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restaurantmap.databinding.ActivityMainBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.geometry.Tm128
 import com.naver.maps.map.CameraAnimation
@@ -13,15 +17,23 @@ import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.widget.ZoomControlView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Thread.State
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var naverMap: NaverMap
     private var isMapInt = false
+    private var restaurantListAdapter = RestaurantListAdapter {
+        collapseBottomSheet()
+        moveCamera(it, 17.0)
+    }
+
+    private var markers = emptyList<Marker>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +44,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding.mapView.getMapAsync(this)
 
-//        binding.bottomSheetLayout.searchResultRecyclerView
+        binding.bottomSheetLayout.searchResultRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = restaurantListAdapter
+        }
 
         binding.searchView.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -45,24 +60,44 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                             ) {
                                 val searchItemList = response.body()?.items.orEmpty()
 
-                                if(searchItemList.isEmpty()){
-                                    Toast.makeText(this@MainActivity,"검색 결과가 없습니다.",Toast.LENGTH_SHORT).show()
+                                if (searchItemList.isEmpty()) {
+                                    Toast.makeText(
+                                        this@MainActivity,
+                                        "검색 결과가 없습니다.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                     return
-                                } else if(isMapInt.not()){
-                                    Toast.makeText(this@MainActivity,"오류가 발생했습니다.",Toast.LENGTH_SHORT).show()
+                                } else if (isMapInt.not()) {
+                                    Toast.makeText(
+                                        this@MainActivity,
+                                        "오류가 발생했습니다.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                     return
                                 }
-                                val markers = searchItemList.map {
-                                    Marker(Tm128(it.mapx.toDouble(),it.mapy.toDouble()).toLatLng()).apply {
+
+                                markers.forEach {
+                                    it.map = null
+                                }
+
+                                markers = searchItemList.map {
+                                    Marker(
+                                        Tm128(
+                                            it.mapx.toDouble(),
+                                            it.mapy.toDouble()
+                                        ).toLatLng()
+                                    ).apply {
                                         captionText = it.title
                                         map = naverMap
                                     }
                                 }
-                                val cameraUpdate = CameraUpdate.scrollTo(markers.first().position)
-                                    .animate(CameraAnimation.Easing)
-                                naverMap.moveCamera(cameraUpdate)
+
+                                restaurantListAdapter.setData(searchItemList)
+                                collapseBottomSheet()
+                                moveCamera(markers.first().position, 14.0)
 
                             }
+
                             override fun onFailure(call: Call<SearchResult>, t: Throwable) {
 
                             }
@@ -80,6 +115,22 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         })
 
     }
+
+    private fun moveCamera(position: LatLng, zoomLevel: Double) {
+        if (isMapInt.not()) {
+            return
+        }
+
+        val cameraUpdate = CameraUpdate.scrollAndZoomTo(position, zoomLevel)
+            .animate(CameraAnimation.Easing)
+        naverMap.moveCamera(cameraUpdate)
+    }
+
+    private fun collapseBottomSheet() {
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheetLayout.root)
+        bottomSheetBehavior.state = STATE_COLLAPSED
+    }
+
 
     override fun onStart() {
         super.onStart()
