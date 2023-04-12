@@ -89,7 +89,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showErrorToast() {
-        Toast.makeText(this, "사용자 로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "사용자 로그인에 실패했습니다!", Toast.LENGTH_SHORT).show()
     }
 
     private fun getKaKaoAccountInfo() {
