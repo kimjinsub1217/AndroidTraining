@@ -14,5 +14,5 @@
 .cxx
 local.properties
 app/kakao.keystore
-app/src/main/res/values/kakaoapi.xml
+app/src/main/res/values/API_KEY.xml
 app/google-services.json

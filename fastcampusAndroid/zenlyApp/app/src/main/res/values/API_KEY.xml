@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="NATIVE_APP_KEY">kakaoea7115ca469159aa4f5496af39aa6d62</string>
-    <string name="NATIVE_APP_KEY2">ea7115ca469159aa4f5496af39aa6d62</string>
-    <string name="MAPS_PLATFORM">  AIzaSyBQU7c2L7SXCuPOywWbAF5tpt47Ra1VArE</string>
+    <string name="NATIVE_APP_KEY">kakao9d5a6087461c84e68e2ff19094ddcda8</string>
+    <string name="NATIVE_APP_KEY2">9d5a6087461c84e68e2ff19094ddcda8</string>
+    <string name="MAPS_PLATFORM">AIzaSyBbUPQZlmJx1FnI_rsu5OkihNxbqKmBjE8</string>
 </resources>
