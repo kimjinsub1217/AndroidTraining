@@ -1,0 +1,9 @@
+{
+  "user" : {
+    "nickname": "김진섭",
+    "starCount": 10,
+    "totalCount":12
+  },
+  "appbarImage":"https://picsum.photos/200/100"
+
+}
