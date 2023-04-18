@@ -1,0 +1,42 @@
+{
+  "coffee" : [
+    {
+      "name": "아메리카노",
+      "image": "https://picsum.photos/100/100"
+    },
+    {
+      "name": "카페라떼",
+      "image": "https://picsum.photos/100/100"
+    },
+    {
+      "name": "아이스커피",
+      "image": "https://picsum.photos/100/100"
+    },
+    {
+      "name": "디카페인 아메리카노",
+      "image": "https://picsum.photos/100/100"
+    },
+    {
+      "name": "오렌지 주스",
+      "image": "https://picsum.photos/100/100"
+    },
+    {
+      "name": "레몬 에이드",
+      "image": "https://picsum.photos/100/100"
+    },
+    {
+      "name": "복숭아 에이드",
+      "image": "https://picsum.photos/100/100"
+    }
+  ],
+  "food": [
+    {
+      "name": "딸기 케이크",
+      "image": "https://picsum.photos/100/100"
+    },
+    {
+      "name": "초코 케이크",
+      "image": "https://picsum.photos/100/100"
+    }
+  ]
+}
