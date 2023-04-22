@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.designpattern.mvc.MvcActivity" />
+        <activity android:name="com.example.designpattern.mvp.MvpActivity" />
     </application>
 
 </manifest>
