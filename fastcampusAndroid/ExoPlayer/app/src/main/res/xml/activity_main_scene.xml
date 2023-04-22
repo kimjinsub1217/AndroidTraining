@@ -7,8 +7,13 @@
         motion:constraintSetStart="@+id/collapse"
         motion:duration="300"
         motion:motionInterpolator="linear">
-        <KeyFrameSet>
+        
+        <OnSwipe motion:touchAnchorId="@id/videoPlayerContainer" />
+        <OnClick
+            motion:clickAction="transitionToEnd"
+            motion:targetId="@id/videoPlayerContainer" />
 
+        <KeyFrameSet>
             <KeyPosition
                 motion:curveFit="linear"
                 motion:framePosition="10"
