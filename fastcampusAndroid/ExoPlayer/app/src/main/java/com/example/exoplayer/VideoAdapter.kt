@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.exoplayer.databinding.ItemVideoBinding
 
 
-class VideoAdapter(private val context: Context) :
+class VideoAdapter(private val context: Context, private val onClick: (VideoEntity) -> Unit) :
     ListAdapter<VideoEntity, VideoAdapter.ViewHolder>(diffUtil) {
 
     inner class ViewHolder(private val binding: ItemVideoBinding) :
@@ -32,7 +32,9 @@ class VideoAdapter(private val context: Context) :
                 .circleCrop()
                 .into(binding.channelLogoImageView)
 
-
+            binding.root.setOnClickListener {
+                onClick.invoke(item)
+            }
 
         }
     }

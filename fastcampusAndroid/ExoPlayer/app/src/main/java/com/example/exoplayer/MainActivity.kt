@@ -17,7 +17,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        videoAdapter = VideoAdapter(context = this)
+        videoAdapter = VideoAdapter(context = this) { videoItem ->
+            binding.motionLayout.transitionToEnd()
+        }
+
+        binding.motionLayout.jumpToState(R.id.collapse)
 
         binding.videoListRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
@@ -26,5 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         val videoList = readData("videos.json", VideoList::class.java) ?: VideoList(emptyList())
         videoAdapter.submitList(videoList.videos)
+
+        binding.playerRecyclerView
     }
 }
