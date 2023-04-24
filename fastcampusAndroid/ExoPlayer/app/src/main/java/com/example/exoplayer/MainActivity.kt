@@ -15,8 +15,11 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-
+    private val videoList:VideoList by lazy{
+        readData("videos.json", VideoList::class.java) ?: VideoList(emptyList())
+    }
     private lateinit var videoAdapter: VideoAdapter
+    private lateinit var playerVideoAdapter: PlayerVideoAdapter
     private var player: ExoPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,12 +28,18 @@ class MainActivity : AppCompatActivity() {
 
         initMotionLayout()
         initVideoRecyclerView()
+        initPlayerVideoRecyclerView()
         initControlButton()
+
         binding.hideButton.setOnClickListener {
             binding.motionLayout.transitionToState(R.id.hide)
             player?.pause()
         }
+
+
+        videoAdapter.submitList(videoList.videos)
     }
+
 
     private fun initControlButton() {
         binding.controlButton.setOnClickListener {
@@ -47,8 +56,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initVideoRecyclerView() {
         videoAdapter = VideoAdapter(context = this) { videoItem ->
-
+            binding.motionLayout.setTransition(R.id.collapse, R.id.expand)
             binding.motionLayout.transitionToEnd()
+
+            val list = listOf(videoItem) + videoList.videos.filter { it.id != videoItem.id }
+            playerVideoAdapter.submitList(list)
             play(videoItem)
         }
 
@@ -58,9 +70,25 @@ class MainActivity : AppCompatActivity() {
             adapter = videoAdapter
         }
 
+
+    }
+
+    private fun initPlayerVideoRecyclerView() {
+
+        playerVideoAdapter = PlayerVideoAdapter(context = this) { videoItem ->
+            play(videoItem)
+            val list = listOf(videoItem) + videoList.videos.filter { it.id != videoItem.id }
+            playerVideoAdapter.submitList(list)
+        }
+
+        binding.playerRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = playerVideoAdapter
+        }
         val videoList = readData("videos.json", VideoList::class.java) ?: VideoList(emptyList())
         videoAdapter.submitList(videoList.videos)
     }
+
 
     private fun initMotionLayout() {
         binding.motionLayout.targetView = binding.videoPlayerContainer
