@@ -25,6 +25,7 @@
         </activity>
         <activity android:name="com.example.designpattern.mvc.MvcActivity" />
         <activity android:name="com.example.designpattern.mvp.MvpActivity" />
+        <activity android:name="com.example.designpattern.mvvm.MvvmActivity" />
     </application>
 
 </manifest>

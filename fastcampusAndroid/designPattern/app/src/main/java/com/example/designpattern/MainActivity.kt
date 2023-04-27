@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.example.designpattern.mvc.MvcActivity
 import com.example.designpattern.databinding.ActivityMainBinding
 import com.example.designpattern.mvp.MvpActivity
+import com.example.designpattern.mvvm.MvvmActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openMvvm() {
-
+        startActivity(Intent(this, MvvmActivity::class.java))
     }
 
     fun openMvi() {
