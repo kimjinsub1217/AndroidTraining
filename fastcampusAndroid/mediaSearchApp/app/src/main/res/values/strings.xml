@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">mediaSearchApp</string>
+    <string name="app_name">미디어 검색</string>
+    <string name="search_hint">검색어를 입력해주세요.</string>
 </resources>
