@@ -5,14 +5,31 @@ import android.os.Bundle
 import android.view.Menu
 import android.widget.SearchView
 import com.example.mediasearchapp.databinding.ActivityMainBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val searchFragment = SearchFragment()
+    private val fragmentList = listOf(searchFragment, FavoritesFragment())
+    private val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle, fragmentList)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initView()
+    }
+
+    private fun initView() {
         binding = ActivityMainBinding.inflate(layoutInflater).apply {
             setContentView(root)
             view = this@MainActivity
+            viewPager.adapter=adapter
+
+            TabLayoutMediator(tabLayout,viewPager){tab, position ->
+                tab.text=if(fragmentList[position] is SearchFragment){
+                    "검색 결과"
+                }else{
+                    "즐겨 찾기"
+                }
+            }.attach()
         }
     }
 
