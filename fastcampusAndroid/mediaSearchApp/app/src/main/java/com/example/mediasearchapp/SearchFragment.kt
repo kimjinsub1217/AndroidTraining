@@ -32,4 +32,8 @@ class SearchFragment : Fragment() {
         super.onDestroy()
         binding=null
     }
+
+    fun searchKeyword(text:String){
+
+    }
 }

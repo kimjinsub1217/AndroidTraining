@@ -65,5 +65,9 @@ dependencies {
     //coil
     implementation 'io.coil-kt:coil:2.3.0'
 
+    //rx
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+    implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
 
 }
