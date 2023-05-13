@@ -25,6 +25,15 @@ class HomeFragment() : Fragment(R.layout.fragment_home), Parcelable {
         adapter.submitList(mutableListOf<ArticleModel>().apply {
             add(ArticleModel("0","피카츄",100000,"10000원","https://w7.pngwing.com/pngs/441/722/png-transparent-pikachu-thumbnail.png"))
             add(ArticleModel("0","라이츄",200000,"15000원","https://static.wikia.nocookie.net/pokemon/images/9/92/%EC%A0%84%EC%A7%84%EC%9D%98_%EB%9D%BC%EC%9D%B4%EC%B8%84.png/revision/latest/scale-to-width-down/1200?cb=20220729043935&path-prefix=ko"))
+            add(ArticleModel("0","피카츄",100000,"10000원","https://w7.pngwing.com/pngs/441/722/png-transparent-pikachu-thumbnail.png"))
+            add(ArticleModel("0","라이츄",200000,"15000원","https://static.wikia.nocookie.net/pokemon/images/9/92/%EC%A0%84%EC%A7%84%EC%9D%98_%EB%9D%BC%EC%9D%B4%EC%B8%84.png/revision/latest/scale-to-width-down/1200?cb=20220729043935&path-prefix=ko"))
+            add(ArticleModel("0","피츄",300000,"22000원","https://i.namu.wiki/i/nOrOqNI0KKLacJSA8Dw_xttWqVR4theEDGtdyIUR2EBveCxx-7q5UkZYF63VWCArP91QgNVoCCPkyLCcUc79YA.webp"))
+            add(ArticleModel("0","피카츄",100000,"10000원","https://w7.pngwing.com/pngs/441/722/png-transparent-pikachu-thumbnail.png"))
+            add(ArticleModel("0","라이츄",200000,"15000원","https://static.wikia.nocookie.net/pokemon/images/9/92/%EC%A0%84%EC%A7%84%EC%9D%98_%EB%9D%BC%EC%9D%B4%EC%B8%84.png/revision/latest/scale-to-width-down/1200?cb=20220729043935&path-prefix=ko"))
+            add(ArticleModel("0","피츄",300000,"22000원","https://i.namu.wiki/i/nOrOqNI0KKLacJSA8Dw_xttWqVR4theEDGtdyIUR2EBveCxx-7q5UkZYF63VWCArP91QgNVoCCPkyLCcUc79YA.webp"))
+            add(ArticleModel("0","피카츄",100000,"10000원","https://w7.pngwing.com/pngs/441/722/png-transparent-pikachu-thumbnail.png"))
+            add(ArticleModel("0","라이츄",200000,"15000원","https://static.wikia.nocookie.net/pokemon/images/9/92/%EC%A0%84%EC%A7%84%EC%9D%98_%EB%9D%BC%EC%9D%B4%EC%B8%84.png/revision/latest/scale-to-width-down/1200?cb=20220729043935&path-prefix=ko"))
+            add(ArticleModel("0","피츄",300000,"22000원","https://i.namu.wiki/i/nOrOqNI0KKLacJSA8Dw_xttWqVR4theEDGtdyIUR2EBveCxx-7q5UkZYF63VWCArP91QgNVoCCPkyLCcUc79YA.webp"))
             add(ArticleModel("0","피츄",300000,"22000원","https://i.namu.wiki/i/nOrOqNI0KKLacJSA8Dw_xttWqVR4theEDGtdyIUR2EBveCxx-7q5UkZYF63VWCArP91QgNVoCCPkyLCcUc79YA.webp"))
         })
 
