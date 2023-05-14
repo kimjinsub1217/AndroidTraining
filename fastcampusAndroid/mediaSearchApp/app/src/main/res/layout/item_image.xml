@@ -8,6 +8,10 @@
             name="item"
             type="com.example.mediasearchapp.model.ImageItem" />
 
+        <variable
+            name="handler"
+            type="com.example.mediasearchapp.list.ItemHandler" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,9 +72,10 @@
             android:id="@+id/favoriteImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{()->handler.onClickFavorite(item)}"
+            app:favorite="@{item.favorite}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:favorite="@{item.favorite}"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

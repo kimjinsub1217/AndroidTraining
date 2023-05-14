@@ -13,30 +13,32 @@ import com.example.mediasearchapp.list.viewholder.VideoViewHolder
 import com.example.mediasearchapp.model.ImageItem
 import com.example.mediasearchapp.model.ListItem
 
-class ListAdapter : ListAdapter<ListItem, RecyclerView.ViewHolder>(diffUtil) {
+class ListAdapter(
+    private val itemHandler: ItemHandler? = null
+) : ListAdapter<ListItem, RecyclerView.ViewHolder>(diffUtil) {
 
     override fun getItemViewType(position: Int): Int {
-        return if(getItem(position) is ImageItem){
+        return if (getItem(position) is ImageItem) {
             IMAGE
-        }else{
+        } else {
             VIDEO
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return if (viewType == IMAGE){
-            ImageViewHolder(ItemImageBinding.inflate(inflater,parent,false))
-        }else{
-            VideoViewHolder(ItemVideoBinding.inflate(inflater,parent,false))
+        return if (viewType == IMAGE) {
+            ImageViewHolder(ItemImageBinding.inflate(inflater, parent, false), itemHandler)
+        } else {
+            VideoViewHolder(ItemVideoBinding.inflate(inflater, parent, false), itemHandler)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
-        if(getItemViewType(position)== IMAGE){
+        if (getItemViewType(position) == IMAGE) {
             (holder as ImageViewHolder).bind(item)
-        }else{
+        } else {
             (holder as VideoViewHolder).bind(item)
         }
     }
