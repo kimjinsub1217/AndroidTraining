@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,7 +37,7 @@ fun BoxEx() {
 //        Text(text = "Hello World", modifier = Modifier.align(Alignment.TopStart))
 //    }
 
-    // 스텝 1 : Text 두개를 Box 안에 배치한다.
+//     스텝 1 : Text 두개를 Box 안에 배치한다.
 //    Box(modifier = Modifier.size(100.dp)) {
 //        Text(text = "Hello World", modifier = Modifier.align(Alignment.TopStart))
 //        Text(text = "Jetpack", modifier = Modifier.align(Alignment.CenterStart))
