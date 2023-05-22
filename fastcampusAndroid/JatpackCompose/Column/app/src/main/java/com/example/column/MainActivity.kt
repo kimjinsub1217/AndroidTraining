@@ -27,11 +27,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ColumnEx() {
-//    Column(modifier = Modifier.size(100.dp)) {
-//        Text(text="1 번")
-//        Text(text="2 번")
-//        Text(text="3 번")
-//    }
+    Column(modifier = Modifier.size(100.dp)) {
+        Text(text="1 번")
+        Text(text="2 번")
+        Text(text="3 번")
+    }
 
     // 스텝 1 : horizontalAlignment를 Column에 적용한다.
     // Alignment : 레이아웃의 반대로 진행됨 즉,가로로 진행이됨
@@ -58,21 +58,21 @@ fun ColumnEx() {
 //    }
 
     // 스텝 3 : Text에 Modifier.align을 사용해 본다.
-    Column(
-        modifier = Modifier.size(100.dp),
-        horizontalAlignment = Alignment.End,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(
-            text = "1 번",
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        )
-        Text(text = "2 번")
-        Text(
-            text = "3 번",
-            modifier = Modifier.align(Alignment.Start)
-        )
-    }
+//    Column(
+//        modifier = Modifier.size(100.dp),
+//        horizontalAlignment = Alignment.End,
+//        verticalArrangement = Arrangement.Center
+//    ) {
+//        Text(
+//            text = "1 번",
+//            modifier = Modifier.align(Alignment.CenterHorizontally)
+//        )
+//        Text(text = "2 번")
+//        Text(
+//            text = "3 번",
+//            modifier = Modifier.align(Alignment.Start)
+//        )
+//    }
 
 }
 
