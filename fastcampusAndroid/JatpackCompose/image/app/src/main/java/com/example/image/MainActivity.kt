@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -38,8 +39,8 @@ fun Greeting() {
 
     // 스텝 2 : 두 번째 Image를 만든다.
     Image(
-        imageVector = Icons.Filled.Settings,
-        contentDescription = "귀멸의 칼날 무이치로"
+        imageVector = Icons.Filled.Search,
+        contentDescription = ""
     )
     
 }

@@ -37,9 +37,9 @@ fun Outer() {
         // heightIn도 전잘한다, 각각 인자의 max 값도 전달한다.
 
         Inner(
-            modifier = Modifier
-                .widthIn(min = 50.dp)
-                .heightIn(min = 50.dp, max = 100.dp)
+//            modifier = Modifier
+//                .widthIn(min = 50.dp)
+//                .heightIn(min = 50.dp, max = 100.dp)
         )
     }
 }
@@ -50,7 +50,7 @@ fun Outer() {
 private fun Inner(modifier: Modifier = Modifier) {
     BoxWithConstraints(modifier) {
         // 스텝 3 : maxHeight 값이 150dp가 넘을 때만 추가로 텍스트를 출력한다.
-        if (maxHeight > 48.dp) {
+        if (maxHeight > 43.dp) {
             Text(
                 text = "길어요~",
                 modifier = Modifier.align(Alignment.BottomEnd)
