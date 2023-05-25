@@ -58,7 +58,7 @@ class MainActivity : ComponentActivity() {
             imageUri = "https://image.tving.com/upload/cms/caip/CAIP0900/P001708967.jpg/dims/resize/480",
             imageDescription = "귀멸의 칼날",
             author = "김진섭",
-            description = "귀멸의 칼날 작화 짱"
+            description = "귀멸의 칼날 재밌어요"
         )
     }
 }
