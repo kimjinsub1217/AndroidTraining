@@ -29,10 +29,10 @@ fun main() {
 
 }
 
-fun rangeOperator(): Observable<Int> {
-    return Observable.range(2, 10)
-}
+//fun rangeOperator(): Observable<Int> {
+//    return Observable.range(1, 10)
+//}
 
 fun repeatOperator(): Observable<Int> {
-    return Observable.range(1, 10).repeat(2)
+    return Observable.range(1, 5).repeat(2)
 }

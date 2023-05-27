@@ -13,6 +13,6 @@ fun main() {
 
 fun intervalOperator(): Observable<Long> {
     return Observable.interval(5, 2, TimeUnit.SECONDS).takeWhile { value ->
-        value <= 10
+        value <= 5
     }
 }

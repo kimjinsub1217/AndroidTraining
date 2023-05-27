@@ -12,7 +12,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 
 class MainActivity : AppCompatActivity() {
     companion object {
-        const val TAG ="MainActivity"
+        const val TAG = "MainActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,24 +46,63 @@ class MainActivity : AppCompatActivity() {
 //        // Observer를 Observable에 구독한다. 이를 통해 Observable은 데이터를 발행하고
 //        // Observer는 해당 데이터를 처리하게 됩니다.
 //        observable.subscribe(observer)
+//
+//        intervalOperator().subscribe(
+//            {
+//                Log.d("intervalOperator","onNext : $it")
+//                getLocation()
+//            },
+//            {
+//                Log.d("intervalOperator","onError ${it}")
+//            },
+//            {
+//                Log.d("intervalOperator","onComplete")
+//            }
+//        ).let { _ -> }
 
-        intervalOperator().subscribe(
-            {
-                Log.d("intervalOperator","onNext : $it")
-                getLocation()
-            },
-            {
-                Log.d("intervalOperator","onError ${it}")
-            },
-            {
-                Log.d("intervalOperator","onComplete")
-            }
-        ).let { _ -> }
+//        timerOperator().subscribe(
+//            {
+//                Log.d("timerOperator","onNext : $it")
+//                getLocation()
+//            },
+//            {
+//                Log.d("timerOperator","onError ${it}")
+//            },
+//            {
+//                Log.d("timerOperator","onComplete")
+//            }
+//        ).let { _ -> }
 
+//        createOperator().subscribe(
+//            {
+//                Log.d("createOperator", "onNext : $it")
+//
+//            },
+//            {
+//                Log.d("createOperator", "onError ${it}")
+//            },
+//            {
+//                Log.d("createOperator", "발행완료")
+//            }
+//        ).let { _ -> }
 
-    }
-    private fun getLocation(){
-        println("Location : ")
+        filter().filter {
+            it.age == 20
+        }
+            .subscribe(
+                {
+                    Log.d("filter", "onNext : $it")
+
+                },
+                {
+                    Log.d("filter", "onError ${it}")
+                },
+                {
+                    Log.d("filter", "20살인 뉴진스 멤버")
+                }
+            ).let { _ -> }
+
     }
 }
+
 
