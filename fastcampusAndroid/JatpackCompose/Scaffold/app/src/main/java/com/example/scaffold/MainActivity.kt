@@ -103,7 +103,6 @@ fun ScaffoldEx() {
         }
     ) {
         Surface(modifier = Modifier.padding(top = 70.dp)) {
-            // 스텝 2: 아래에 CheckBoxWithContent를 넣어봅시다.
             CheckBoxWithContent(checked = checked, toggleState = { checked = !checked }) {
                 Text(text = "비를 좋아해요")
             }

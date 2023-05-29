@@ -86,21 +86,34 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        ).let { _ -> }
 
-        filter().filter {
-            it.age == 20
-        }
-            .subscribe(
-                {
-                    Log.d("filter", "onNext : $it")
+//        filter().filter {
+//            it.age == 20
+//        }
+//            .subscribe(
+//                {
+//                    Log.d("filter", "onNext : $it")
+//
+//                },
+//                {
+//                    Log.d("filter", "onError ${it}")
+//                },
+//                {
+//                    Log.d("filter", "20살인 뉴진스 멤버")
+//                }
+//            ).let { _ -> }
+//
+    last()
+        .last( NewJeans(1,"민지",20)) // 기본값을 주는 방법
+//        .lastElement() // 기본값을 주지 않는 방법
+        .subscribe(
+            {
+                Log.d("lastNewJeans", "onNext : $it")
 
-                },
-                {
-                    Log.d("filter", "onError ${it}")
-                },
-                {
-                    Log.d("filter", "20살인 뉴진스 멤버")
-                }
-            ).let { _ -> }
+            },
+            {
+                Log.d("lastNewJeans", "onError ${it}")
+            }
+        ).let { _ -> }
 
     }
 }
