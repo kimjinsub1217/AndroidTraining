@@ -102,20 +102,66 @@ class MainActivity : AppCompatActivity() {
 //                }
 //            ).let { _ -> }
 //
-    last()
-        .last( NewJeans(1,"민지",20)) // 기본값을 주는 방법
-//        .lastElement() // 기본값을 주지 않는 방법
-        .subscribe(
-            {
-                Log.d("lastNewJeans", "onNext : $it")
+//    last()
+//        .last( NewJeans(1,"민지",20)) // 기본값을 주는 방법
+////        .lastElement() // 기본값을 주지 않는 방법
+//        .subscribe(
+//            {
+//                Log.d("lastNewJeans", "onNext : $it")
+//
+//            },
+//            {
+//                Log.d("lastNewJeans", "onError ${it}")
+//            }
+//        ).let { _ -> }
+//
+//        distinct()
+////        .distinct {
+////            it.age
+////        }
+//            .distinct()
+//            .subscribe(
+//                {
+//                    Log.d("distinct", "onNext : $it")
+//
+//                },
+//                {
+//                    Log.d("distinct", "onError ${it}")
+//                },
+//                {
+//                    Log.d("distinct", "중복을 제거")
+//                }
+//            ).let { _ -> }
 
-            },
-            {
-                Log.d("lastNewJeans", "onError ${it}")
-            }
-        ).let { _ -> }
+        skip()
+            .skip(2)
+            .subscribe(
+                {
+                    Log.d("skip", "onNext : $it")
+
+                },
+                {
+                    Log.d("skip", "onError ${it}")
+                },
+                {
+                    Log.d("skip", "민지와 하니 스킵~")
+                }
+            ).let { _ -> }
 
     }
 }
 
+val newJeansList = mutableListOf<NewJeans>(
+    NewJeans(1, "민지", 20),
+    NewJeans(2, "하니", 20),
+    NewJeans(3, "다니엘", 19),
+    NewJeans(4, "해린", 18),
+    NewJeans(5, "혜인", 16),
+)
 
+data class NewJeans
+    (
+    val id: Long,
+    val name: String,
+    val age: Int
+)
