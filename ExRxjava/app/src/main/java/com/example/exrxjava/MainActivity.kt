@@ -221,16 +221,29 @@ class MainActivity : AppCompatActivity() {
 //
 //    }
 
-        newJeansMerge()
+//        newJeansMerge()
+//            .subscribe(
+//                {
+//                    Log.d("newJeansMerge", "onNext : ${it}")
+//                },
+//                {
+//                    Log.d("newJeansMerge", "onError ${it}")
+//                },
+//                {
+//                    Log.d("newJeansMerge", "뉴진스 + 뉴진스")
+//                }
+//            ).let { _ -> }
+
+        concat()
             .subscribe(
                 {
-                    Log.d("newJeansMerge", "onNext : ${it}")
+                    Log.d("concat", "onNext : ${it}")
                 },
                 {
-                    Log.d("newJeansMerge", "onError ${it}")
+                    Log.d("concat", "onError ${it}")
                 },
                 {
-                    Log.d("newJeansMerge", "뉴진스 + 뉴진스")
+                    Log.d("concat", "1 ~ 150까지")
                 }
             ).let { _ -> }
 
