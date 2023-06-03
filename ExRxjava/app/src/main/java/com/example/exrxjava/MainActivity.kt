@@ -11,10 +11,6 @@ import io.reactivex.rxjava3.disposables.Disposable
 
 
 class MainActivity : AppCompatActivity() {
-    companion object {
-        const val TAG = "MainActivity"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -133,18 +129,108 @@ class MainActivity : AppCompatActivity() {
 //                }
 //            ).let { _ -> }
 
-        skip()
-            .skip(2)
+//        skip()
+//            .skip(2)
+//            .subscribe(
+//                {
+//                    Log.d("skip", "onNext : $it")
+//
+//                },
+//                {
+//                    Log.d("skip", "onError ${it}")
+//                },
+//                {
+//                    Log.d("skip", "민지와 하니 스킵~")
+//                }
+//            ).let { _ -> }
+
+//        buffer()
+//            .buffer(2,)
+//            .subscribe(
+//                {
+//                    Log.d("buffer", "onNext : $it")
+//
+//                },
+//                {
+//                    Log.d("buffer", "onError ${it}")
+//                },
+//                {
+//                    Log.d("buffer", "2개씩 묶어서 보낼게요~")
+//                }
+//            ).let { _ -> }
+
+//        map()
+//            .map {
+//                it.age + 5
+//            }
+//            .subscribe(
+//                {
+//                    Log.d("map", "onNext : $it")
+//
+//                },
+//                {
+//                    Log.d("map", "onError ${it}")
+//                },
+//                {
+//                    Log.d("map", "5살 추가")
+//                }
+//            ).let { _ -> }
+
+//        flatmap()
+//            .flatMap {
+//                getNewJeansProgile(it.id)
+//            }
+//            .subscribe(
+//                {
+//                    Log.d("flatmap", "onNext : $it")
+//
+//                },
+//                {
+//                    Log.d("flatmap", "onError ${it}")
+//                },
+//                {
+//                    Log.d("flatmap", "")
+//                }
+//            ).let { _ -> }
+
+//        groupBy()
+//            .groupBy {
+//                it.age
+//            }
+//            .filter{
+//                it.key!! >=19
+//            }
+//            .subscribe(
+//                { group ->
+//                    group.subscribe(
+//                        {
+//                            Log.d("groupBy", "key : ${group.key} - value : $it")
+//                        }, {
+//                            Log.d("groupBy", "onError ${it}")
+//                        }
+//                    ).let { }
+//
+//                },
+//                {
+//                    Log.d("groupBy", "onError ${it}")
+//                },
+//                {
+//                    Log.d("groupBy", "")
+//                }
+//            ).let { _ -> }
+//
+//    }
+
+        newJeansMerge()
             .subscribe(
                 {
-                    Log.d("skip", "onNext : $it")
-
+                    Log.d("newJeansMerge", "onNext : ${it}")
                 },
                 {
-                    Log.d("skip", "onError ${it}")
+                    Log.d("newJeansMerge", "onError ${it}")
                 },
                 {
-                    Log.d("skip", "민지와 하니 스킵~")
+                    Log.d("newJeansMerge", "뉴진스 + 뉴진스")
                 }
             ).let { _ -> }
 
@@ -158,10 +244,58 @@ val newJeansList = mutableListOf<NewJeans>(
     NewJeans(4, "해린", 18),
     NewJeans(5, "혜인", 16),
 )
+val newJeansList2 = mutableListOf<NewJeans>(
+    NewJeans(1, "민지2", 20),
+    NewJeans(2, "하니2", 20),
+    NewJeans(3, "다니엘2", 19),
+    NewJeans(4, "해린2", 18),
+    NewJeans(5, "혜인2", 16),
+)
+
+val newJeansProfileList = mutableListOf<NewJeansProfile>(
+    NewJeansProfile(
+        1,
+        "민지",
+        20,
+        "https://i.namu.wiki/i/lv9_tel_Tb0uMTKu2GLyq1gY4Sh3wYddG064z0UQkOTEMKi1omYumqgpckuP5JQtyCFq2f-c8E51uRHabRg9Ru6NYgkmyimxkMjtXEbq98c9PMJdF0XkDtquZxuflQSoCS7hkzA-hkuYEPwhG2ioOA.webp"
+    ),
+    NewJeansProfile(
+        2,
+        "하니",
+        20,
+        "https://i.namu.wiki/i/GOfWppX0rHef2nGzGaQk1Vc52w30yqMGMwrWmTkyiPt_q6QxpzCYT_udgxbW6gT2yEldgqMNkfSez9DNwVO9kmLqENnlTovqg7Rkf4t8st1YdP2_LEV0a-gfphc5EYTR_cGyo_09swiXT63SYix2-Q.webp"
+    ),
+    NewJeansProfile(
+        3,
+        "다니엘",
+        19,
+        "https://i.namu.wiki/i/BgeXK91A_VVuIMV-8VPMeBrKeUTvrIeKKLlG6DEI6XurjFe9Z-OjFDqB9VcyYNr-sXE-rrVEioFsit29zMC6Dv8K5iYkgKJ8AUU0_V9nm93Rg34JuA-SeEzulF2AQk6M46RrdF2ivufcB-3mxYgr-g.webp"
+    ),
+    NewJeansProfile(
+        4,
+        "해린",
+        18,
+        "https://i.namu.wiki/i/X9iZkGHp4MkW2piBgK6YaD0FZ4SsksGBDGSeqDoEDh8X9Y1a11VEZpg65mykUxqCxeyk8CGxzXIzjc-K00DpIok0-ftDV1L8ujnstR0emaNIjnZCQzn9xcVecqnJP7sJ1-fBSbHbONaKFfyionNy4w.webp"
+    ),
+    NewJeansProfile(
+        5,
+        "혜인",
+        16,
+        "https://i.namu.wiki/i/4StsXr8ljHiUmcJPw7ro9Pd7O-LQsN3fvy5EPML257rzN5BbveG_FSeEopsOmE6vuUGmtJTyELsjwtaDima9XeWkGPW1Yj71r2agxeUaYUXmPY2SQGIougpj5T9f7lLn_vtgK4uUTxvwmeGRfj5V8w.webp"
+    ),
+)
 
 data class NewJeans
     (
     val id: Long,
     val name: String,
     val age: Int
+)
+
+data class NewJeansProfile
+    (
+    val id: Long,
+    val name: String,
+    val age: Int,
+    val image: String
 )
