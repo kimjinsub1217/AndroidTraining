@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import com.example.constraintlayout.ui.theme.ConstraintLayoutTheme
@@ -40,63 +41,64 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ConstraintLayoutEx() {
 
-    val constraintSet = ConstraintSet {
-        val redBox = createRefFor("redBox")
-        val magentaBox = createRefFor("magentaBox")
-        val greenBox = createRefFor("greenBox")
-        val yellowBox = createRefFor("yellowBox")
+//    val constraintSet = ConstraintSet {
+//        val redBox = createRefFor("redBox")
+//        val magentaBox = createRefFor("magentaBox")
+//        val greenBox = createRefFor("greenBox")
+//        val yellowBox = createRefFor("yellowBox")
+//
+//        constrain(redBox) {
+//            bottom.linkTo(parent.bottom, margin = 8.dp)
+//            end.linkTo(parent.end, margin = 4.dp)
+//        }
+//
+//        constrain(magentaBox) {
+//            start.linkTo(parent.start)
+//            end.linkTo(parent.end)
+//        }
+//
+//        constrain(greenBox) {
+//            centerTo(parent)
+//        }
+//        constrain(yellowBox) {
+//            start.linkTo(magentaBox.end)
+//            top.linkTo(magentaBox.bottom)
+//        }
+//    }
 
-        constrain(redBox) {
-            bottom.linkTo(parent.bottom, margin = 8.dp)
-            end.linkTo(parent.end, margin = 4.dp)
-        }
 
-        constrain(magentaBox) {
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-        }
-
-        constrain(greenBox) {
-            centerTo(parent)
-        }
-        constrain(yellowBox) {
-            start.linkTo(magentaBox.end)
-            top.linkTo(magentaBox.bottom)
-        }
-    }
-
-
-    ConstraintLayout(constraintSet, modifier = Modifier.fillMaxSize()) {
-
-//        val (redBox, magentaBox, greenBox, yellowBox) = createRefs()
+//    ConstraintLayout(constraintSet, modifier = Modifier.fillMaxSize()) {
+    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+        val (redBox, magentaBox, greenBox, yellowBox, text) = createRefs()
 
         Box(
-
             modifier = Modifier
                 .size(40.dp)
                 .background(androidx.compose.ui.graphics.Color.Red)
-                .layoutId("redBox")
-//                .constrainAs(redBox) {
-////                    bottom.linkTo(parent.bottom, margin = 8.dp)
-////                    end.linkTo(parent.end, margin = 4.dp)
-//                }
+//                .layoutId("redBox")
+                .constrainAs(redBox) {
+//                    bottom.linkTo(parent.bottom, margin = 8.dp)
+//                    end.linkTo(parent.end, margin = 4.dp)
+                    top.linkTo(parent.top, margin = 18.dp)
+                }
         )
         Box(
 
             modifier = Modifier
                 .size(40.dp)
                 .background(androidx.compose.ui.graphics.Color.Magenta)
-                .layoutId("magentaBox")
-//                .constrainAs(magentaBox) {
-////                    start.linkTo(parent.start)
-////                    end.linkTo(parent.end)
-//                }
+//                .layoutId("magentaBox")
+                .constrainAs(magentaBox) {
+//                    start.linkTo(parent.start)
+//                    end.linkTo(parent.end)
+                    top.linkTo(parent.top, margin = 32.dp)
+                }
         )
-        Box(
-            modifier = Modifier
-                .size(40.dp)
-                .layoutId("greenBox")
-                .background(androidx.compose.ui.graphics.Color.Green)
+//        Box(
+//            modifier = Modifier
+//                .size(40.dp)
+////                .layoutId("greenBox")
+//                .background(androidx.compose.ui.graphics.Color.Green)
 //                .constrainAs(greenBox) {
 ////                    start.linkTo(parent.start)
 ////                    end.linkTo(parent.end)
@@ -105,18 +107,32 @@ fun ConstraintLayoutEx() {
 //
 ////                    centerTo(parent)
 //                }
-        )
+//        )
 
         Box(
             modifier = Modifier
                 .size(40.dp)
-                .layoutId("yellowBox")
+//                .layoutId("yellowBox")
                 .background(androidx.compose.ui.graphics.Color.Yellow)
-//                .constrainAs(yellowBox) {
-////                    start.linkTo(magentaBox.end)
-////                    top.linkTo(magentaBox.bottom)
-//                }
+                .constrainAs(yellowBox) {
+//                    start.linkTo(magentaBox.end)
+//                    top.linkTo(magentaBox.bottom)
+                    top.linkTo(parent.top, margin = 20.dp)
+                }
         )
+
+//        createVerticalChain(redBox, yellowBox, magentaBox)
+//        createHorizontalChain(redBox, yellowBox, magentaBox)
+        createHorizontalChain(redBox, yellowBox, magentaBox, chainStyle = ChainStyle.Packed)
+        val barrier =createBottomBarrier(redBox, yellowBox, magentaBox)
+
+        Text(
+            text = "오늘은 맑음,오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음, 오늘은 맑음,  ",
+            modifier = Modifier.constrainAs(text){
+                top.linkTo(barrier)
+            }
+        )
+
     }
 }
 
