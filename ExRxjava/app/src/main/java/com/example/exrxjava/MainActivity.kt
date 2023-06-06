@@ -8,6 +8,7 @@ import androidx.constraintlayout.motion.widget.Debug.getLocation2
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 class MainActivity : AppCompatActivity() {
@@ -233,20 +234,104 @@ class MainActivity : AppCompatActivity() {
 //                    Log.d("newJeansMerge", "뉴진스 + 뉴진스")
 //                }
 //            ).let { _ -> }
+//
+//        concat()
+//            .subscribe(
+//                {
+//                    Log.d("concat", "onNext : ${it}")
+//                },
+//                {
+//                    Log.d("concat", "onError ${it}")
+//                },
+//                {
+//                    Log.d("concat", "1 ~ 150까지")
+//                }
+//            ).let { _ -> }
 
-        concat()
-            .subscribe(
-                {
-                    Log.d("concat", "onNext : ${it}")
-                },
-                {
-                    Log.d("concat", "onError ${it}")
-                },
-                {
-                    Log.d("concat", "1 ~ 150까지")
-                }
-            ).let { _ -> }
+//        startWith()
+//            .subscribe(
+//                {
+//                    Log.d("startWith", "onNext : ${it}")
+//                },
+//                {
+//                    Log.d("startWith", "onError ${it}")
+//                },
+//                {
+//                    Log.d("startWith", "1 ~ 150까지")
+//                }
+//            ).let { _ -> }
 
+//        zip()
+//            .subscribe(
+//                {
+//                    Log.d("zip", "onNext : ${it}")
+//                },
+//                {
+//                    Log.d("zip", "onError ${it}")
+//                },
+//                {
+//                    Log.d("zip", "zip")
+//                }
+//            ).let { _ -> }
+
+//        createObservable().subscribe({
+//            Log.d("createObservable", "onNext : ${it}")
+//        },
+//            {
+//                Log.d("createObservable", "onError ${it}")
+//            },
+//            {
+//                Log.d("createObservable", "createObservable")
+//            }).let { }
+
+//        createSingleObservable().subscribe(
+//            {
+//            Log.d("createSingleObservable", "onSuccess : ${it}")
+//            },
+//            {
+//                Log.d("createSingleObservable", "onError ${it}")
+//            }
+//        ).let { }
+//
+//        createMaybeObservable().subscribe(
+//            observerMaybeObservable()
+//        )
+
+//        createCompletableObservable().subscribe(
+//            observerCompletableObservable()
+//        )
+
+//        createFlowableObservable()
+////            .onBackpressureDrop()
+//            .onBackpressureLatest()
+//            .observeOn(Schedulers.io(), false, 12)
+//            .subscribe(
+//                {
+//                    Log.d("createFlowableObservable", "onNext : ${it}")
+//                },
+//                {
+//                    Log.d("createFlowableObservable", "onError ${it}")
+//                },
+//                {
+//                    Log.d("createFlowableObservable", "onComplete")
+//                }
+//            ).let { }
+
+//        createObservable()
+//            .subscribeOn(Schedulers.io())
+//            .subscribe(
+//                observer()
+//            )
+
+
+
+
+    }
+
+    override fun onDestroy() {
+//        disposable.dispose()
+        Log.d("onDestroy", "onDestroy")
+        super.onDestroy()
     }
 }
 
