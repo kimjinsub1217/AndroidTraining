@@ -9,19 +9,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+
 import com.example.recyclerview.databinding.ItemArticleBinding
-import java.text.SimpleDateFormat
-import java.util.Date
+
 
 class Adapter : ListAdapter<ArticleModel, Adapter.ViewHolder>(diffUtil) {
     inner class ViewHolder(private val binding: ItemArticleBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(articleModel: ArticleModel) {
-            val format = SimpleDateFormat("MM월 dd일")
-            val date = Date(articleModel.createtAt)
-
             binding.tittleTextView.text = articleModel.tittle
-            binding.dateTextView.text = format.format(date).toString()
+            binding.dateTextView.text = "${articleModel.createtAt}월 01일"
             binding.priceTextView.text = articleModel.price
 
             if (articleModel.imageUrl.isNotEmpty()) {
