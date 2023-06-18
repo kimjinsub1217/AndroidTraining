@@ -25,7 +25,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.snackbar.ui.theme.SnackBarTheme
-import kotlinx.coroutines.NonCancellable.message
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
