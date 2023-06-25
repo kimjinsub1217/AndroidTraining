@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import com.example.room.db.TextDatabase
+import com.example.room.entity.TextEntity
+import com.example.room.entity.WordEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         insert.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 db.textDao().insert(TextEntity(0, editText.text.toString()))
+                db.wordDao().insert(WordEntity(0, editText.text.toString()))
                 editText.setText("")
 
             }
@@ -33,12 +37,14 @@ class MainActivity : AppCompatActivity() {
         getData.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 Log.i("김진섭", db.textDao().getAllData().toString())
+                Log.i("김진섭2", db.wordDao().getAllData().toString())
             }
         }
 
         delete.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 db.textDao().deleteAllData()
+                db.wordDao().deleteAllData()
             }
         }
     }
